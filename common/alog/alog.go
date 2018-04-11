@@ -21,6 +21,10 @@ type (
 	LOG_TYPE  string
 )
 
+const (
+	LEVER_INVALID_ERR string = "level is not avalid"
+)
+
 var (
 	TRACE = LOG_LEVEL(0)
 	INFO  = LOG_LEVEL(1)
@@ -48,6 +52,7 @@ func (level LOG_LEVEL) String() string {
 	case FATAL:
 		return "[FATAL] "
 	}
+	panic("log type error")
 }
 
 //日志数据
@@ -65,7 +70,7 @@ func WriteLog(level LOG_LEVEL, skip int,
 	}
 
 	if level >= FATAL && skip > 0 {
-		pc, file, line, ok = runtime.Caller(skip)
+		pc, file, line, ok := runtime.Caller(skip)
 		if ok {
 			//返回一个表示调用栈标识符pc对应的调用栈的*Func；
 			fn := runtime.FuncForPC(pc)
@@ -74,7 +79,7 @@ func WriteLog(level LOG_LEVEL, skip int,
 				funcName = "?()"
 			} else {
 				//返回path文件扩展名
-				funcName = strings.TrimLeft(filepath.Ext(file.Name()), ".") + "()"
+				funcName = strings.TrimLeft(filepath.Ext(fn.Name()), ".") + "()"
 			}
 			if len(file) > 20 {
 				file = "..." + file[len(file)-20:]

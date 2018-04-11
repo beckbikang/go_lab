@@ -1,5 +1,1 @@
 package alog
-
-import (
-	"testing"
-)
