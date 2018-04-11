@@ -1,0 +1,5 @@
+package alog
+
+import (
+	"testing"
+)
