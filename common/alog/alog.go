@@ -22,7 +22,8 @@ type (
 )
 
 const (
-	LEVER_INVALID_ERR string = "level is not avalid"
+	LEVER_INVALID_ERR  string = "level is not avalid"
+	LEVER_LOG_TYPE_ERR string = "log type error"
 )
 
 var (
@@ -52,7 +53,7 @@ func (level LOG_LEVEL) String() string {
 	case FATAL:
 		return "[FATAL] "
 	}
-	panic("log type error")
+	panic(LEVER_LOG_TYPE_ERR)
 }
 
 //日志数据
