@@ -1,5 +1,8 @@
 /target
+pid3000*
 /*.iml
 /main/*.iml
 .DS_Store
 /.idea
+tmp/*
+/tmp
